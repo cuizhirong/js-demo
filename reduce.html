@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<script type="text/javascript">
+  //将数组转化成对象，然后合并对象(将多个数组合并成一个多层级的对象)
+  function test(nameArr, tree, oldName) {
+    let len = nameArr.length,
+      arr = [];
+
+    if (!!!nameArr[len - 1]) {
+      arr = nameArr.slice(0, len - 1);
+    } else {
+      arr = nameArr;
+    }
+    //将数组转化成无限层级的对象，反向压入
+    let obj = arr.reduceRight((result, key, index, tree) => ({[key]: result}), {});
+
+    return obj;
+  }
+
+  function objAssign(obj1, obj2) {
+    let o1keys = Object.keys(obj1);
+    let o2keys = Object.keys(obj2);
+
+    o2keys.forEach(k2 => {
+      if( o1keys.indexOf(k2) > -1 ){
+        //递归deep遍历
+        objAssign(obj1[k2],obj2[k2])
+      } else {
+        obj1[k2] = obj2[k2];
+      }
+    });
+  }
+
+  let arrData = [["321", "222", "RPM打包 21.pages"],["321", "222", "333", "4444", ""],
+  ["321", "222", "333", "太阳.png"],
+  ["321", "222", ""]], obj = {}, arr = [];
+
+  arrData.forEach((a, i) => {
+    arr.push(this.test(a, obj, arrData[i - 1]));
+  });
+
+  this.objAssign(arr[0], arr[1]);
+
+  let arr1 = arr.reduce((pre, next) => {
+    this.objAssign(pre, next);
+    return pre;
+  });
+
+  console.log(arr1)
+</script>
+<body>
+</body>
+</html>
