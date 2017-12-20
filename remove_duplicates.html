@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<script type="text/javascript">
+  var array = [{
+    a:1,
+    b:2,
+    c:3,
+    d:4
+  }, {
+    a:11,
+    b:22,
+    c:333,
+    d:44
+  }, {
+    a:111,
+    b:222,
+    c:333,
+    d:444
+  }, {
+    a:11,
+    b:22,
+    c:33,
+    d:44
+  }, {
+    a:11,
+    b:22,
+    c:33,
+    d:444
+  }];
+
+  var arr = [{
+    name:'tom',
+    age:15
+  }, {
+    name:'jack',
+    age:18
+  }, {
+    name:'Jecc',
+    age:18
+  }, {
+    name:'tom',
+    age:10
+  }];
+
+  var hash = {};
+  let arr1 = arr.reduce(function(item, next) {
+    hash[next.name] ? '' : hash[next.name] = true && item.push(next);
+    return item;
+  }, []);
+
+  console.log(arr1)
+</script>
+<body>
+
+</body>
+</html>

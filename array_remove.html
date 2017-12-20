@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数组去重的方法</title>
+</head>
+<script type="text/javascript">
+  //方法一
+  function unique1(a) {
+    let res = [], i, j;
+
+    for(i = 0; i < a.length; i ++) {
+      let item = a[i];
+
+      for(j = 0; j < res.length; j ++) {
+        if (item === res[j]) {
+          //res中存在时跳出循环
+          break;
+        }
+      }
+      //当遍历所有res元素之后都不存在时，把item加入res
+      if (j === res.length) res.push(item);
+    }
+
+    return res;
+  }
+
+  //方法二，简化代码,使用indexOf判断res中是否存在当前数据
+  function unique2(a) {
+    let res = [], i;
+
+    for (i = 0; i < a.length; i ++) {
+      (res.indexOf(a[i]) === -1) && res.push(a[i]);
+    }
+
+    return res;
+  }
+
+  //方法三
+
+  function unique3(a) {
+    let res = a.filter((item, index, arr) => {
+      //第一次出现的地方是否和序列号相同，相同则表示第一次出现，不相同则表示之前存在过
+      return arr.indexOf(item) === index;
+    });
+
+    return res;
+  }
+
+  let arr = [1, 1, '1', '2', 1];
+  console.log(unique3(arr))
+</script>
+<body>
+
+</body>
+</html>
