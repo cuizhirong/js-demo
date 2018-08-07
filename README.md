@@ -6,4 +6,5 @@ js快捷方法使用
 3. array_remove.html: 数组去重的方法(数组对象是普通基本数据类型)
 
 每日练习(参考文章来源: https://segmentfault.com/u/comehope)
+
 第一天(2018.8.7) 1.文字滑动 2.矩形旋转loader
