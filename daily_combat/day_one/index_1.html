@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 
+   * 当子元素浮动时, 父元素高度自适应高度的方法
+   * 1. 父元素设置overflow: hidden
+   * 2. 子元素添加一个空标签, 在这个子元素中清除浮动
+  */
+  body, html {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(255, 239, 213);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .box {
+    border: 2px solid #000;
+  }
+  .box span{
+    margin-right: 10px;
+    font-size: 40px;
+    display: inline-block;
+    color: blue;
+  }
+  /* 1.将蓝色的字母按照奇偶上下排列(奇数向上平移100%, 偶数向下平移100%) */
+  .box span:nth-child(odd) { 
+    transform: translateY(-100%);
+  }
+  .box span:nth-child(even) {
+    transform: translateY(100%);
+  }
+  /* 2.为每个字母设置before, data-text是自定义属性 */
+  .box span::before {
+    content: attr(data-text);
+    position: absolute;
+    color: red;
+  }
+  /* 3.让伪元素的字母交错显示 */
+  .box span:nth-child(odd)::before {
+    transform: translateY(100%);
+  }
+  .box span:nth-child(even)::before {
+    transform: translateY(-100%);
+  }
+  /* 4.hover的时候交叉显示, hover的时候每个span平移回原位置, 时间0.5s */
+  .box:hover span {
+    transform: translateY(0);
+  }
+  .box span {
+    transition: 0.5s;
+  }
+  /* 5.隐藏框外的元素 */
+  .box {
+    overflow: hidden;
+  }
+</style>
+<body>
+  <div class="box">
+    <span data-text="B">B</span>
+    <span data-text="U">U</span>
+    <span data-text="T">T</span>
+    <span data-text="T">T</span>
+    <span data-text="O">O</span>
+    <span data-text="N">N</span>
+  </div>
+</body>
+</html>
