@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .box {
+    width: 300px;
+    height: 300px;
+  }
+  .box .content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    box-sizing: border-box;
+    padding: 15px;
+  }
+  /* 1.设置边框 */
+  .box,
+  .box .content {
+    box-shadow: 0 0 2px deeppink,
+                0 0 5px #000,
+                inset 0 0 #000;
+    border-radius: 10px;
+  }
+
+  /* 2.content内容布局 */
+  .box .content {
+    flex-direction: column;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: white;
+  }
+
+  .box .content h2 {
+    color: deeppink;
+  }
+  .box .content p {
+    color: dimgray;
+  }
+
+  /* 3.边框样式 */
+  .box {
+    background: linear-gradient(
+      -45deg,
+      white 0%,
+      white 10%,
+      hotpink 10%,
+      hotpink 20%,
+      white 20%,
+      white 30%,
+      hotpink 30%,
+      hotpink 40%,
+      white 40%,
+      white 50%,
+      hotpink 50%,
+      hotpink 60%,
+      white 60%,
+      white 70%,
+      hotpink 70%,
+      hotpink 80%,
+      white 80%,
+      white 90%,
+      hotpink 90%,
+      hotpink 100%
+    );
+  }
+
+  /* 4.动画效果 */
+  @keyframes animate {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: 100%;
+    }
+  }
+
+  .box {
+    animation: animate 2s linear infinite;
+  }
+
+</style>
+<body>
+  <div class="box">
+    <div class="content">
+      <h2>What is Lorem Ipsum?</h2>
+      <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam. Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
+    </div>
+  </div>
+</body>
+</html>
