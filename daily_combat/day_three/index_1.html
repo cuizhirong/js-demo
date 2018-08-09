@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 知识点
+   * 伪元素和伪类: 为了格式化文档树之外的信息。也就是说，伪元素和伪类是用来修饰不在文档树中的部分。
+   * 伪类: 用于当已有元素处于某种状态的时候，为其添加对应的样式，这个状态是根据用户行为改变的。
+   * 举例说明：当用户悬停在指定的元素时，我们可以通过:hover来描述这个状态。虽然他和普通css类相似，可以为已有的元素添加样式,
+   * 但是它只有处于DOM树无法描述的状态下才能为元素添加样式。所以称为伪类。
+   *
+   * 伪元素: 创建一些不在文档树中的元素，并为其添加样式。
+   * 举例说明: 我们可以通过:before在一个元素之前添加一些文本，并为这些文本添加一些样式。虽然用户可以看到这些文本，但是这些文本并不在文档树上。
+   *
+   * 简单理解，伪元素是可以设置content属性的，类似于标签，但是伪类只能设置样式不能设置内容。
+  */
+  html {
+    background-color: mediumaquamarine;
+  }
+  html,
+  body,
+  .checkbox,
+  .checkbox .inner,
+  .checkbox .inner .toggle {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 1.画出最外层的框 */
+  .checkbox {
+    width: 10em;
+    height: 5em;
+    border-radius: 2.5em;
+    background: linear-gradient(silver, whitesmoke);
+    font-size: 40px;
+  }
+  /* 2.画内层框 */
+  .checkbox .inner {
+    width: 8em;
+    height: 3.5em;
+    border-radius: 2em;
+    background: linear-gradient(dimgray, silver);
+    box-shadow: inset 0 0 3.5em rgba(0, 0, 0, 0.5);
+  }
+  /* 3.画按钮 */
+  .checkbox .inner .toggle {
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    background: linear-gradient(to top, silver, whitesmoke);
+    position: relative;
+    left: -30%;
+    box-shadow: 0 0.4em 0.6em rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  /* 4.为按钮添加立体效果 */
+  .checkbox .inner .toggle::before {
+    content: '';
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    background: linear-gradient(silver, whitesmoke);
+  }
+  /* 5.按钮添加文字 */
+  .checkbox .inner .toggle::before {
+    content: 'OFF';
+    text-align: center;
+    line-height: calc(3.5em * 0.8);
+    color: gray;
+  }
+  /* 6.添加on的样式 */
+  .checkbox .inner.active {
+    background: linear-gradient(green, limegreen);
+  }
+  .checkbox .inner.active .toggle {
+    left: 30%;
+  }
+  .checkbox .inner.active .toggle::before {
+    content: 'ON';
+    color: limegreen;
+  }
+  .checkbox .inner .toggle {
+    transition: 0.5s;
+  }
+</style>
+<body>
+  <div class="checkbox">
+    <div class="inner">
+      <div class="toggle"></div>
+    </div>
+  </div>
+</body>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.toggle').click(function() {
+      $('.inner').toggleClass('active');
+    });
+  });
+</script>
+</html>

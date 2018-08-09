@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 知识点
+   * display: grid, 网格布局
+   * grid-template-columns(竖向排列): 100px 100px 200px; 3列 宽度分别是 100px, 100px, 200px
+   * grid-template-rows(横向排列): 50px 200px 50px; 3行 高度分别是 50px, 200px, 50px
+   * grid-gap(表格子元素之间插入间距): 10px; 每行/列间距是10px 也可分开定义grid-column-gap grid-row-gap
+   *
+   * grid-template-columns: repeat(4, 100px); 重复网格, 第一个参数表示重复次数，第二个参数表示尺寸 
+   * 举例说明: 
+   * .xx { grid-template-rows: repeat(4, 100px); grid-template-columns: repeat(3, 1fr); }
+   * 重复3行, 每行高度100px; 重复3列, 每行宽度均分
+   *
+   * 定义宽度高度可变的表格，有fr单位
+   * 举例说明: grid-template-columns: 1fr 1fr 1fr;
+   * 1.三列宽度是相同的 2.列的宽度是可变的 3.表格宽度根据容器宽度和元素之间的间距计算出来的
+  */
+  html,
+  body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 1.画格子 */
+  .diamond {
+    display: grid;
+  }
+  .diamond span {
+    border-width: 50px;
+    border-style: solid;
+  }
+  /* 2.上色 */
+  :root {
+    --color1: deepskyblue;
+    --color2: steelblue;
+    --color3: royalblue;
+    --color4: dodgerblue;
+  }
+  .diamond span {
+    border-color: var(--color1) var(--color2) var(--color3) var(--color4);
+  }
+  /* 3.布局 */
+  .diamond {
+    grid-template-columns: 1fr 1fr;
+    transform: rotate(45deg);
+  }
+  .diamond span:first-child {
+    border-color: transparent var(--color2) var(--color3) transparent;
+  }
+  /* 4.添加动画 */
+  @keyframes animate {
+    0% {
+      border-color: var(--color1) var(--color2) var(--color3) var(--color4);
+    }
+    
+    25% {
+      border-color: var(--color4) var(--color1) var(--color2) var(--color3);
+    }
+    
+    50% {
+      border-color: var(--color3) var(--color4) var(--color1) var(--color2);
+    }
+    
+    75% {
+      border-color: var(--color2) var(--color3) var(--color4) var(--color1);
+    }
+    
+    100% {
+      border-color: var(--color1) var(--color2) var(--color3) var(--color4);
+    }
+  }
+  .diamond span:not(:first-child) {
+    animation: animate 2s linear infinite;
+  }
+</style>
+<body>
+  <div class="diamond">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</body>
+</html>
