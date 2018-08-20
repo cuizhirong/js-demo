@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* Knowledge Points:
+   *
+   * currentColor: 当前颜色指当前标签继承到的文字颜色
+   * background-size: 设置背景图片(background-image)的尺寸(可选值: 固定宽高, 百分比, cover, contain)
+   * background-sze中, 100% 和 cover的区别: 100% 和 cover都是将背景图扩大或者缩放来适应整个容器; 100按容器比例撑满，图片变形；cover把图片
+   * 放大或者缩放到适合容器的尺寸，图片比例不变，但是要注意，超出容器的部分可能会被裁掉。当100％时，100%和100%， 100%也会显示不同的效果。background-size
+   * 这个属性有两个值，第一个x轴的缩放比例或者px, 第二个y轴的缩放比例或者px，如果只写一个值，另外一个则默认为auto；
+   * 比方说：你有一张长宽比例为4:3的图片，有一个width:100px;height:50px;的盒子(也就是长宽比例为2:1)。
+   * background-size: 100% 100%;这种方式设置背景的大小后，会完全铺满整个盒子，并且整个背景图的比例改为2:1
+   * background-size: 100%;这种方式设置的背景图片，x轴会和盒子一样宽，但是y轴高度默认是auto，根据上面的理论计算得背景图片的高度为300px,但是盒子只有50px高，
+   * 超出的部分隐藏，所以看两种写法的效果自然就不一样啦。
+   * 第一种效果你一定会看到完整的背景图片，但是有可能被挤压(失去图片原来的比例)
+   * 第二种效果你不一定能看到完整的图片，但是图片的比例没有发生变化。
+   * cover 和 contain的区别：图片都是等比例缩放，cover是铺满整个显示区域，如果显示比例和显示区域比例相差很大，某些部分不会显示，会被裁掉。contain正好相反，
+   * 它是按照某一边显示区域，会有白边(未填充)
+   *
+   * animation steps: 
+  */
+  html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 1.画电池外壳 */
+  .battery {
+    width: 6em;
+    height: 3em;
+    color: midnightblue;
+    border: 0.5em solid currentColor;
+    border-radius: 0.2em;
+    font-size: 2em;
+  }
+  /* 2.画电池右侧突起 */
+  .battery {
+    position: relative;
+  }
+  .battery::after {
+    content: '';
+    position: absolute;
+    width: 0.5em;
+    height: 2em;
+    background-color: currentColor;
+    top: 0.5em;
+    right: -1em; /*battery border 0.5em + ::after width 0.5em = 1em*/
+    border-radius: 0 0.2em 0.2em 0;
+  }
+  /* 3.画电量 */
+  .battery {
+    background-image: linear-gradient(to right, black, black);
+    background-repeat: no-repeat;
+    background-size: 30% 80%;
+    background-position: 0.3em 50%;
+  }
+  /* 4.定义动画 */
+  @keyframes charge {
+    from {
+      background-size: 10% 80%;
+    }
+    to {
+      background-size: 95% 80%;
+    }
+  }
+  /* 5.添加动画 */
+  .battery {
+    animation: charge 5s linear infinite;
+  }
+  /* 6.线性动画改为步长 */
+  .battery {
+    animation: charge 5s steps(8) infinite;
+  }
+</style>
+<body>
+  <div class="battery">
+
+  </div>
+</body>
+</html>

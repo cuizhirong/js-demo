@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body, .bows {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+  }
+  /* 1.彩虹尺寸 */
+  .rainbow {
+    width: 20em;
+    height: 10em;
+  }
+  .bows {
+    width: 100%;
+    height: 200%;
+    position: relative;
+  }
+  /* 2.画彩虹 */
+  .bows {
+    transform: rotate(45deg);
+  }
+  .bows span {
+    position: absolute;
+    width: calc(100% - 2em * (var(--n) - 1));
+    height: calc(100% - 2em * (var(--n) - 1));
+    border: 1em solid var(--color);
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    box-sizing: border-box;
+  }
+  .bows span:nth-child(1) {
+    --n: 1;
+    --color: orangered;
+  }
+  .bows span:nth-child(2) {
+    --n: 2;
+    --color: orange;
+  }
+  .bows span:nth-child(3) {
+    --n: 3;
+    --color: yellow;
+  }
+  .bows span:nth-child(4) {
+    --n: 4;
+    --color: mediumspringgreen;
+  }
+  .bows span:nth-child(5) {
+    --n: 5;
+    --color: deepskyblue;
+  }
+  .bows span:nth-child(6) {
+    --n: 6;
+    --color: mediumpurple;
+  }
+  /* 3.定义动画 */
+  @keyframes rotating {
+    0%, 20% {
+      transform: rotate(0deg);
+    }
+    80%, 100% {
+      transform: rotate(360deg);
+    }
+  }
+  .bows span {
+    animation: rotating 3s infinite;
+    animation-delay: calc(0.05s * var(--n));
+  }
+  /* 4.隐藏多余部分 */
+  .rainbow {
+    overflow: hidden;
+  }
+</style>
+<body>
+  <div class="rainbow">
+    <div class="bows">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</body>
+</html>

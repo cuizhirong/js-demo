@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /*
+   * perspective
+  */
+  html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .box {
+    display: flex;
+  }
+  .box .inner {
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  /* 1.背景以及字体颜色 */
+  .box .inner:first-child {
+    background-color: indianred;
+    color: darkred;
+  }
+  .box .inner:last-child {
+    background-color: lightcoral;
+    color: antiquewhite;
+  }
+  /* 2.背景倾斜(左右相反角度倾斜) */
+  .box .inner:first-child {
+    transform-origin: left;
+    transform: perspective(300px) rotateY(-67.3deg);
+  }
+  .box .inner:last-child {
+    transform-origin: right;
+    transform: perspective(300px) rotateY(67.3deg);
+  }
+  /* 3.定义动画 */
+  @keyframes animate {
+    from {
+      left: 100%;
+    }
+    to {
+      left: -100%;
+    }
+  }
+  .box .inner span {
+    position: absolute;
+    animation: animate 5s linear infinite;
+  }
+  .box .inner {
+    overflow: hidden;
+  }
+  /* 4.拼接字母 */
+  .box .inner:first-child span {
+    animation-delay: 2.5s;
+    left: 100%;
+  }
+</style>
+<body>
+  <div class="box">
+    <div class="inner">
+      <span>Hello World</span>
+    </div>
+    <div class="inner">
+      <span>Hello World</span>
+    </div>
+  </div>
+</body>
+</html>
