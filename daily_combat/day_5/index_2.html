@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+  }
+  .circle {
+    width: 10em;
+    height: 10em;
+    border: 0.4em solid red;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: blue;
+  }
+  /* 1.画三个圆 */
+  .circle {
+    position: relative;
+  }
+  .circle::before {
+    content: '';
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border: 0.4em solid orange;
+    top: 8%;
+    left: 8%;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: cyan;
+  }
+  .circle::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    border: 0.4em solid orange;
+    top: 20%;
+    left: 20%;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: limegreen;
+  }
+  /* 2.添加动画 */
+  @keyframes rotating {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(1440deg);
+    }
+  }
+  .circle {
+    animation: rotating 4s ease-in-out infinite alternate;
+  }
+  .circle::before {
+    animation: rotating 8s ease-in-out infinite alternate;
+  }
+  .circle::after {
+    animation: rotating 16s ease-in-out infinite alternate;
+  }
+</style>
+<body>
+  <div class="circle"></div>
+</body>
+</html>
