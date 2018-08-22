@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  nav {
+    --h: 3em;
+  }
+  nav ul {
+    padding: 0;
+  }
+  /* 1.定义样式 */
+  nav ul li {
+    list-style-type: none;
+    width: calc(var(--h) * 1.732);
+    height: var(--h);
+    background-color: #333;
+    color: white;
+    text-align: center;
+    line-height: var(--h);
+    margin: 2em;
+  }
+  /* 2.添加矩形 */
+  nav ul li {
+    position: relative;
+  }
+  nav ul li::before,
+  nav ul li::after {
+    content: '';
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-color: #333;
+    top: 0;
+    left: 0;
+  }
+  nav ul li::before {
+    transform: rotate(60deg) translateX(calc(var(--h) * -2));
+  }
+  nav ul li::after {
+    transform: rotate(-60deg) translateX(calc(var(--h) * 2));
+  }
+  nav ul li::before,
+  nav ul li::after {
+    z-index: -1;
+    filter: opacity(0);
+    transition: 0.3s;
+  }
+  nav ul li:hover::before {
+    filter: opacity(1);
+    transform: rotate(60deg) translateX(0);
+  }
+  nav ul li:hover::after {
+    filter: opacity(1);
+    transform: rotate(-60deg) translateX(0);
+  }
+  nav:nth-child(1) {
+    --rate: 1.5;
+    --bgcolor: black;
+  }
+  nav:nth-child(2) {
+    --rate: 1.732;
+    --bgcolor: brown;
+  }
+  nav:nth-child(3) {
+    --rate: 2;
+    --bgcolor: green;
+  }
+  nav ul li {
+    width: calc(var(--h) * var(--rate));
+    background-color: var(--bgcolor);
+  }
+  nav ul li::before,
+  nav ul li::after {
+    background-color: var(--bgcolor);
+  }
+</style>
+<body>
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>Products</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>Products</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>Products</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+</body>
+</html>
