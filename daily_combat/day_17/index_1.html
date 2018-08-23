@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* Points: text-transform*/
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+  }
+  p {
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  p {
+    margin: 0;
+  }
+  p:nth-child(1) {
+    transform: translateY(50%);
+  }
+  p:nth-child(2) {
+    transform: translateY(-50%);
+  }
+  @keyframes show-hide {
+    0% {
+      filter: opacity(0);
+      letter-spacing: -0.8em;
+    }
+    25% {
+      filter: opacity(1);
+    }
+    40% {
+      filter: opacity(1);
+    }
+    50% {
+      filter: opacity(0);
+      letter-spacing: 0.24em;
+    }
+  }
+  p {
+    animation: show-hide 10s infinite;
+    filter: opacity(0);
+  }
+  p:nth-child(1) {
+    animation-duration: normal;
+  }
+  p:nth-child(2) {
+    animation-direction: reverse;
+  }
+</style>
+<body>
+  <div class="container">
+    <p>Explorer</p>
+    <p>Discovery</p>
+  </div>
+</body>
+</html>
