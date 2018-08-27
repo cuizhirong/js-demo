@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: brown;
+  }
+  /* 1.杯子 */
+  .coffee .cup {
+    width: 10em;
+    height: 9em;
+    background-color: white;
+    border-bottom-left-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+  }
+  /* 2.杯口 */
+  .coffee .cup {
+    position: relative;
+  }
+  .coffee .cup::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2em;
+    background-color: chocolate;
+    border: 0.5em solid white;
+    box-sizing: border-box;
+    border-radius: 50%;
+    top: -1em;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.5);
+  }
+  /* 3.杯把 */
+  .coffee .cup::after {
+    content: '';
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: 0.8em solid white;
+    left: 80%;
+    top: 20%;
+  }
+  /* 4.盘子 */
+  .coffee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10em;
+    position: relative;
+    top: 40%;
+  }
+  .coffee .plate {
+    width: 16em;
+    height: 1em;
+    background-color: white;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    position: absolute;
+    bottom: -1px;
+  }
+  /* 5.热气 */
+  .coffee {
+    height: 12em;
+  }
+  .coffee .vapor {
+    width: 7em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .coffee .vapor span {
+    width: 0.1em;
+    min-width: 1px;
+    height: 2em;
+    background-color: white;
+  }
+  /* 6.动画 */
+  @keyframes evaporation {
+    from {
+      transform: translateY(0);
+      filter: opacity(1) blur(0.2em);
+    }
+    to {
+      transform: translateY(-4em);
+      filter: opacity(0) blur(0.4em);
+    }
+  }
+  .coffee .vapor span {
+    animation:  evaporation 2s linear infinite;
+  }
+</style>
+<body>
+  <div class="coffee">
+    <div class="vapor">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="cup"></div>
+    <div class="plate"></div>
+  </div>
+</body>
+</html>
